@@ -1,4 +1,6 @@
-<!-- app/views/restaurants/new.html.erb -->
+<h1>Edit <em><%= @task.title %><em></h1>
+
+<!-- app/views/restaurants/edit.html.erb -->
 <%= form_with model: @task do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
