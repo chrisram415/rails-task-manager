@@ -1,13 +1,7 @@
 <h1>Edit <em><%= @task.title %><em></h1>
 
 <!-- app/views/restaurants/edit.html.erb -->
-<%= form_with model: @task do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :details %>
-  <%= f.text_field :details %>
-  <%= f.submit %>
-<% end %>
-
-<hr>
-<li><%= link_to "Return to all tasks", tasks_path %></li>
+<%# added form_with in _form %>
+<!-- app/views/restaurants/new.html.erb -->
+<%# says hey render the form here and to the variable task pass the @task %>
+<%= render "form", task: @task %>

@@ -1,4 +1,12 @@
 class TasksController < ApplicationController
+  # instead of calling the method set_task for each method required we use a 'filter':
+  #  this says:
+  # before running the actions below
+  # run the method set_task
+  # only for the action methods [:show, :edit, :update, :destroy]
+  # there are more filters in the docs under Rails filter docs
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
     @tasks = Task.all
     # raise
@@ -7,7 +15,12 @@ class TasksController < ApplicationController
   # task GET    /tasks/:id(.:format)                   tasks#show
   def show
     # raise
-    @task = Task.find(params[:id])
+    # # find the id of the instance w/ params id (we found this by using raise)
+    # # the line beneath repeats for show, edit, update, destroy
+    # # so we will do the following:
+    # # we create a private method, set_task
+    # # this method will do what the line beneath does
+    # @task = Task.find(params[:id])
   end
 
   # new_task GET    /tasks/new(.:format)                   tasks#new
@@ -26,22 +39,36 @@ class TasksController < ApplicationController
 
   # edit_task GET    /tasks/:id/edit(.:format)              tasks#edit
   def edit
-    @task = Task.find(params[:id])
+    # # find the id of the instance w/ params id (we found this by using raise)
+    # # the line beneath repeats for show, edit, update, destroy
+    # # so we will do the following:
+    # # we create a private method, set_task
+    # # this method will do what the line beneath does
+    # @task = Task.find(params[:id])
   end
 
   # PATCH  /tasks/:id(.:format)                   tasks#update
   # once we click on update on the edit page we need to trigger this method
   def update
     # raise
-    @task = Task.find(params[:id])
+    # # find the id of the instance w/ params id (we found this by using raise)
+    # # the line beneath repeats for show, edit, update, destroy
+    # # so we will do the following:
+    # # we create a private method, set_task
+    # # this method will do what the line beneath does
+    # @task = Task.find(params[:id])
     @task.update(task_params)
     redirect_to task_path(@task)
   end
 
   # DELETE /tasks/:id(.:format)                   tasks#destroy
   def destroy
-    # find the id of the instance w/ params id (we found this by using raise)
-    @task = Task.find(params[:id])
+    # # find the id of the instance w/ params id (we found this by using raise)
+    # # the line beneath repeats for show, edit, update, destroy
+    # # so we will do the following:
+    # # we create a private method, set_task
+    # # this method will do what the line beneath does
+    # @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path, status: :see_other
   end
@@ -55,6 +82,11 @@ end
 # <%= link_to(title, path) %>
 
 private
+
+#  call upon this method at the the top to preset the @task with Task.find(params[:id])
+def set_task
+  @task = Task.find(params[:id])
+end
 
 def task_params
   params.require(:task).permit(:title, :details)

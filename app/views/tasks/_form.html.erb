@@ -1,0 +1,13 @@
+<%#  never have instance variables in it must be dynamic %>
+<%#  remove the @ %>
+<%= form_with model: task do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :details %>
+  <%= f.text_field :details %>
+  <%= f.submit %>
+  <%# if we want to add new areas we just add it here vs 2 files %>
+<% end %>
+
+<hr>
+<li><%= link_to "Return to all tasks", tasks_path %></li>
